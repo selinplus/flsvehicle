@@ -1,58 +1,77 @@
 <template>
     <v-app>
         <v-container fluid>
-            <v-toolbar app>
-                <v-btn icon @click.stop="clipped = !clipped">
-                    <v-icon>web</v-icon>
-                </v-btn>
-                <v-toolbar-title v-text="title" color="primary"></v-toolbar-title>
+            <v-toolbar app color="indigo" dense flat>
+                <v-toolbar-title v-text="title" class="white--text"></v-toolbar-title>
                 <v-spacer></v-spacer>
-                <v-btn icon @click.stop="rightDrawer = !rightDrawer">
-                    <v-icon>person</v-icon>
+                <v-avatar class="green" size="32">
+                    <v-icon dark>account_circle</v-icon>
+                </v-avatar>
+                <v-btn dark icon>
+                    <v-badge overlap v-model="message">
+                        <span slot="badge">{{message}}</span>
+                        <v-avatar
+                            class="purple red--after" size="32"
+                        >
+                            <v-icon dark>notifications</v-icon>
+                        </v-avatar>
+                    </v-badge>
                 </v-btn>
             </v-toolbar>
+            <v-progress-linear indeterminate></v-progress-linear>
             <v-content>
                 <router-view/>
             </v-content>
             <v-footer fixed app>
-                <v-layout row child-flex nowrap>
-                    <div>
-                        <v-toolbar flex dark color="primary">
-                            <v-menu light top offset-y>
-                                <v-btn color="primary" dark slot="activator">八角年审</v-btn>
-                                <v-list>
-                                    <v-list-tile v-for="item in menu1" :key="item.title" @click="menuNavigator(item.title)">
-                                    <v-list-tile-title>{{ item.title }}</v-list-tile-title>
-                                    </v-list-tile>
-                                </v-list>
-                            </v-menu>
-                            <v-menu top offset-y>
-                                <v-btn color="primary" dark slot="activator">业务办理</v-btn>
-                                <v-list>
-                                    <v-list-tile v-for="item in menu2" :key="item.title" @click="menuNavigator(item.title)">
-                                    <v-list-tile-title>{{ item.title }}</v-list-tile-title>
-                                    </v-list-tile>
-                                </v-list>
-                            </v-menu>
-                            <v-menu top offset-y>
-                                <v-btn color="primary" dark slot="activator">便民服务</v-btn>
-                                <v-list>
-                                    <v-list-tile v-for="item in menu3" :key="item.title" @click="menuNavigator(item.title)">
-                                    <v-list-tile-title>{{ item.title }}</v-list-tile-title>
-                                    </v-list-tile>
-                                </v-list>
-                            </v-menu>
-                        </v-toolbar>
-                    </div>
-                    <div style="flex-basis: 20%">
-                    <v-toolbar dark>
-                        <v-btn icon>
-                        <v-icon>reply</v-icon>
-                        </v-btn>
-                    </v-toolbar>
-                    </div>
-                </v-layout>
-                
+              <v-bottom-nav
+                absolute
+                :value="true"
+                :active.sync="e2"
+                :color="color"
+              >
+                  <v-menu top offset-y>
+                    <v-btn  dark slot="activator">
+                        <span>八角年审</span>
+                        <v-icon>home</v-icon>
+                    </v-btn>
+                    <v-list>
+                        <v-list-tile v-for="item in menu1" :key="item.title" @click="menuNavigator(item.to)">
+                            <v-list-tile-action>
+                              <v-icon v-if="item.icon" color="indigo">{{ item.icon }}</v-icon>
+                            </v-list-tile-action>
+                            <v-list-tile-title>{{ item.title }}</v-list-tile-title>
+                        </v-list-tile>
+                    </v-list>
+                    </v-menu>
+                    <v-menu top offset-y>
+                    <v-btn color="primary" dark slot="activator">
+                        <span>业务办理</span>
+                        <v-icon>next_week</v-icon>
+                    </v-btn>
+                    <v-list>
+                        <v-list-tile v-for="item in menu2" :key="item.title" @click="menuNavigator(item.to)">
+                            <v-list-tile-action>
+                              <v-icon v-if="item.icon" color="indigo">{{ item.icon }}</v-icon>
+                            </v-list-tile-action>
+                            <v-list-tile-title>{{ item.title }}</v-list-tile-title>
+                        </v-list-tile>
+                    </v-list>
+                    </v-menu>
+                    <v-menu top offset-y>
+                    <v-btn color="primary" dark slot="activator">
+                        <span>便民服务</span>
+                        <v-icon>local_library</v-icon>
+                    </v-btn>
+                    <v-list>
+                        <v-list-tile v-for="item in menu3" :key="item.title" @click="menuNavigator(item.to)">
+                            <v-list-tile-action>
+                              <v-icon v-if="item.icon" color="indigo">{{ item.icon }}</v-icon>
+                            </v-list-tile-action>
+                            <v-list-tile-title>{{ item.title }}</v-list-tile-title>
+                        </v-list-tile>
+                    </v-list>
+                </v-menu>
+              </v-bottom-nav>
             </v-footer>
         </v-container>
     </v-app>
@@ -61,17 +80,30 @@
 export default {
   data () {
     return {
+      message: 1,
       clipped: null,
-      title: '福莱山车辆检验有限公司',
+      title: '福莱山车辆检验',
       rightDrawer: null,
-      menu1: [{title: '关于我们'}, {title: '服务特色'}, {title: '客户之声'}, {title: '位置导航'}],
-      menu2: [{title: '登记注册'}, {title: '年审预约'}, {title: '违章查询'}],
-      menu3: [{title: '行业资讯'}, {title: '检车流程'}]
+      menu1: [{title: '关于我们', icon: 'invert_colors', to: '/company/about'}, {title: '服务特色', icon: 'redeem', to: '/company/special'}, {title: '客户之声', icon: 'hearing', to: '/company/voice'}, {title: '位置导航', icon: 'navigation', to: '/company/navi'}],
+      menu2: [{title: '登记注册', icon: 'keyboard', to: '/business/reg'}, {title: '年审预约', icon: 'class', to: '/business/prediction'}, {title: '违章查询', icon: 'subtitles', to: '/business/illegal'}],
+      menu3: [{title: '行业资讯', icon: 'info', to: '/service/info'}, {title: '检车流程', icon: 'play_for_work', to: '/service/workflow'}],
+      e2: 3
+    }
+  },
+  computed: {
+    color () {
+      switch (this.e2) {
+        case 0: return 'blue-grey'
+        case 1: return 'teal'
+        case 2: return 'brown'
+        case 3: return 'indigo'
+      }
     }
   },
   methods: {
-    menuNavigator (title) {
-      console.log(title)
+    menuNavigator (to) {
+      console.log(to)
+      this.$router.push(to)
     }
   }
 }

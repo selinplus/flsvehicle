@@ -1,22 +1,10 @@
 <template>
   <v-container fluid>
-    <v-slide-y-transition mode="out-in">
+    <v-slide-x-transition mode="out-in">
       <v-layout column align-center>
-        <v-jumbotron
-              :gradient="gradient"
-              dark
-            >
-          <v-container fill-height>
-            <v-layout align-center>
-                <v-flex text-xs-center>
-                  <h3 class="display-3">关于我们</h3>
-                  <span class="subheading">我们是车辆检测方面的专家，我们的理念是方便、安全、和谐.</span>
-                  <v-divider class="my-3"></v-divider>
-                  <div class="title mb-3">最新的资讯</div>
-                </v-flex>
-            </v-layout>
-          </v-container>
-        </v-jumbotron>
+        <v-container>
+          <router-view/>
+        </v-container>
         <blockquote>
           &#8220;原型演示版&#8221;
           <footer>
@@ -26,7 +14,7 @@
           </footer>
         </blockquote>
       </v-layout>
-    </v-slide-y-transition>
+    </v-slide-x-transition>
   </v-container>
 </template>
 <script>

@@ -9,22 +9,16 @@
           <v-container fill-height>
             <v-layout align-center>
                 <v-flex text-xs-center>
-                  <h3 class="display-3">关于我们</h3>
-                  <span class="subheading">我们是车辆检测方面的专家，我们的理念是方便、安全、和谐.</span>
+                  <h3 class="display-3">检车流程</h3>
+                  <span class="subheading">1、。。。。。。。</span>
+                  <span class="subheading">2、。。。。。。。</span>
+                  <span class="subheading">3、。。。。。。。</span>
                   <v-divider class="my-3"></v-divider>
                   <div class="title mb-3">最新的资讯</div>
                 </v-flex>
             </v-layout>
           </v-container>
         </v-jumbotron>
-        <blockquote>
-          &#8220;原型演示版&#8221;
-          <footer>
-            <small>
-              <em>&mdash;selinplus</em>
-            </small>
-          </footer>
-        </blockquote>
       </v-layout>
     </v-slide-y-transition>
   </v-container>
@@ -33,7 +27,7 @@
 export default {
   data () {
     return {
-      gradient: 'to top left, rgba(12,181,201, .9), rgba(25,32,72, .2)'
+      gradient: 'to top left, rgba(12,81,01, .9), rgba(25,32,72, .2)'
     }
   }
 }
