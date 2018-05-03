@@ -4,6 +4,7 @@ import Welcome from '@/components/wxhl/welcome'
 import Home from '@/components/wxhl/home'
 import User from '@/components/wxhl/user'
 import Dept from '@/components/wxhl/dept'
+import Task from '@/components/wxhl/task'
 
 Vue.use(Router)
 
@@ -26,6 +27,10 @@ export default new Router({
           path: 'dept',
           name: 'Dept',
           component: Dept
+        }, {
+          path: 'task',
+          name: 'Task',
+          component: Task
         }
       ]
     }

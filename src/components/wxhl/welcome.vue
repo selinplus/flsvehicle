@@ -52,10 +52,12 @@
     }),
     methods: {
       login () {
-        if (!this.username === this.password === 'admiN') {
-          this.alert = true
-        } else {
+        console.log(this.username)
+        console.log(this.password)
+        if (this.username === 'admin' && this.password === 'Asd123') {
           this.$router.push('/home')
+        } else {
+          this.alert = true
         }
       }
     },
