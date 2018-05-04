@@ -81,16 +81,20 @@
     </v-toolbar>
     <v-content>
       <v-container fluid fill-height>
-        <v-layout column justify-space-between align-center>
-          <router-view></router-view>
-          <blockquote>
-            &#8220;原型演示版&#8221;
-            <footer>
-              <small>
-                <em>&mdash;selinplus</em>
-              </small>
-            </footer>
-          </blockquote>
+        <v-layout column justify-space-between align-content-space-between>
+          <transition name="fade" mode="out-in">
+            <router-view></router-view>
+          </transition>
+          <v-layout justify-center align-content-center>
+            <blockquote>
+              &#8220;原型演示版&#8221;
+              <footer>
+                <small>
+                  <em>&mdash;selinplus</em>
+                </small>
+              </footer>
+            </blockquote>
+          </v-layout>
         </v-layout>
       </v-container>
     </v-content>
@@ -215,3 +219,18 @@
     }
   }
 </script>
+<style scoped>
+.fade-enter-active{
+  transition: 1s;
+  right: -100%;
+}
+.fade-leave-active {
+  transition: 1s;
+  left: -100%;
+}
+.fade-enter, .fade-leave-to
+/* .slide-fade-leave-active for below version 2.1.8 */ {
+  transform: translateX(10px);
+  opacity: 0;
+}
+</style>
