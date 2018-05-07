@@ -9,7 +9,7 @@
             </v-alert>
             <v-card class="elevation-12">
               <v-toolbar dark color="primary">
-                <v-toolbar-title>无线互联</v-toolbar-title>
+                <v-toolbar-title>无线专网</v-toolbar-title>
                 <v-spacer></v-spacer>
                 <v-tooltip bottom>
                   <v-btn

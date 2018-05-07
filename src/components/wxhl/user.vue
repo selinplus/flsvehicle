@@ -1,29 +1,91 @@
 <template>
-  <v-data-table
-    :headers="headers"
-    :items="items"
-    :loading="true"
-    class="elevation-4"
-    :rows-per-page-item="perPageItem"
-    rows-per-page-text = "每页行数:"
-    app
-  >
-    <v-progress-linear slot="progress" color="blue" indeterminate></v-progress-linear>
-    <template slot="items" slot-scope="props">
-      <td>{{ props.item.name }}</td>
-      <td class="text-xs-right"><v-icon>{{ props.item.avator }}</v-icon></td>
-      <td class="text-xs-right">{{ props.item.deptName }}</td>
-      <td class="text-xs-right">{{ props.item.position }}</td>
-      <td class="text-xs-right">{{ props.item.level }}</td>
-      <td class="text-xs-right">{{ props.item.mobile }}</td>
-    </template>
-  </v-data-table>
+  <v-container column justify-space-between align-content-space-between>
+    <v-data-table :headers="headers" :items="items" :loading="true" class="elevation-4"
+      :rows-per-page-item="perPageItem"
+      rows-per-page-text = "每页行数:"
+      app
+    >
+      <v-progress-linear slot="progress" color="blue" indeterminate></v-progress-linear>
+      <template slot="items" slot-scope="props">
+        <td>{{ props.item.name }}</td>
+        <td class="text-xs-right"><v-icon>{{ props.item.avator }}</v-icon></td>
+        <td class="text-xs-right">{{ props.item.deptName }}</td>
+        <td class="text-xs-right">{{ props.item.position }}</td>
+        <td class="text-xs-right">{{ props.item.level }}</td>
+        <td class="text-xs-right">{{ props.item.mobile }}</td>
+      </template>
+    </v-data-table>
+     <v-dialog v-model="dialog" width="800px">
+      <v-layout row>
+        <v-flex xs12 sm6 offset-sm3>
+          <v-card>
+            <v-list two-line>
+              <v-list-tile>
+                <v-list-tile-action>
+                  <v-icon color="indigo">电话</v-icon>
+                </v-list-tile-action>
+                <v-list-tile-content>
+                  <v-list-tile-title>130-0000-0000</v-list-tile-title>
+                  <v-list-tile-sub-title>移动电话</v-list-tile-sub-title>
+                </v-list-tile-content>
+                <v-list-tile-action>
+                  <v-icon>chat</v-icon>
+                </v-list-tile-action>
+              </v-list-tile>
+              <v-list-tile>
+                <v-list-tile-action></v-list-tile-action>
+                <v-list-tile-content>
+                  <v-list-tile-title>(0535) 555-6789</v-list-tile-title>
+                  <v-list-tile-sub-title>办公</v-list-tile-sub-title>
+                </v-list-tile-content>
+                <v-list-tile-action>
+                  <v-icon>chat</v-icon>
+                </v-list-tile-action>
+              </v-list-tile>
+              <v-divider inset></v-divider>
+              <v-list-tile>
+                <v-list-tile-action>
+                  <v-icon color="indigo">mail</v-icon>
+                </v-list-tile-action>
+                <v-list-tile-content>
+                  <v-list-tile-title>aliconnors@example.com</v-list-tile-title>
+                  <v-list-tile-sub-title>私人</v-list-tile-sub-title>
+                </v-list-tile-content>
+              </v-list-tile>
+              <v-list-tile>
+                <v-list-tile-action></v-list-tile-action>
+                <v-list-tile-content>
+                  <v-list-tile-title>ali_connors@example.com</v-list-tile-title>
+                  <v-list-tile-sub-title>工作</v-list-tile-sub-title>
+                </v-list-tile-content>
+              </v-list-tile>
+              <v-divider inset></v-divider>
+              <v-list-tile>
+                <v-list-tile-action>
+                  <v-icon color="indigo">location_on</v-icon>
+                </v-list-tile-action>
+                <v-list-tile-content>
+                  <v-list-tile-title>环山路88号</v-list-tile-title>
+                  <v-list-tile-sub-title>山东烟台 芝罘区</v-list-tile-sub-title>
+                </v-list-tile-content>
+              </v-list-tile>
+            </v-list>
+             <v-card-actions>
+                <v-spacer></v-spacer>
+                <v-btn flat @click="dialog = false">关闭</v-btn>
+              </v-card-actions>
+          </v-card>
+        </v-flex>
+      </v-layout>
+    </v-dialog>
+  </v-container>
 </template>
 
 <script>
   export default {
     data () {
       return {
+        dialog: false,
         perPageItem: [5, 10, 25, { 'text': '所有', 'value': -1 }],
         headers: [
           {
@@ -125,3 +187,9 @@
     }
   }
 </script>
+<style>
+.media{
+  height: 100%;
+  margin: 0;
+}
+</style>
